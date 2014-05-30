@@ -248,7 +248,7 @@
                 $( "#empbody" ).delegate( "tr", "click", function( e ){  
                     var employeeid=$(this).find(".empID").val();
 
-                    $.get('ActionServlet',{empID:employeeid},function(responseText) { 
+                    $.get('EmployeeInfoAction.do',{empID:employeeid},function(responseText) { 
                         var json = $.parseJSON(responseText);
                         $('#modalbody').html("<h4>Basic Information</h4></br>Employee ID:  "+json.empIDNum+"</br>"
                                             +"Name:  "+json.firstName+"&nbsp"+json.middleName+"&nbsp"+json.lastName+"</br>"
