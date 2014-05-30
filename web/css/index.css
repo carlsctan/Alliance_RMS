@@ -1,0 +1,89 @@
+@CHARSET "ISO-8859-1";
+
+body
+{
+	background-color: #F4F4F4;
+}
+
+#content
+{
+	position: absolute;
+	top: 0%;
+	left: 50%;
+	margin-left: -300px;
+	width: 600px;
+	height: 100%;
+	box-shadow: 0px 0px 100px #1C1C1C;
+}
+
+#error-label
+{
+	width: 224px;
+	border-style: solid;
+	border-color: red;
+	background-color: #FF8684;
+	padding: 10px;
+	padding-left: 30px;
+	border-radius: 5px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin-top: 120px;
+	margin-left: -132px;
+	color: #303030;
+}
+
+#login-box
+{
+	width: 300px;
+	height: 176px;
+	
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: -110px 0 0 -150px;
+}
+
+#login-button
+{
+	background-color: red;
+	color: white;
+	font-size: 20px;
+	margin-top: 30px;
+	padding: 15px;
+	cursor: pointer;
+	border-radius: 5px;
+	width: 300px;
+}
+
+#logo
+{
+	padding-left: 40px;
+	width: 250px;
+	height: 70px;
+	
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: -200px 0 0 -150px;
+}
+
+#passfield
+{
+	padding: 10px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	box-shadow: 3px 0px 10px #1C1C1C;
+	font-size: 20px;
+	letter-spacing: 3px;
+}
+
+#userfield
+{
+	padding: 10px;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	box-shadow: 3px 0px 10px #1C1C1C;
+	font-size: 20px;
+	letter-spacing: 3px;
+}

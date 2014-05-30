@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <constant name="struts.devMode" value="true" />
+
+    <package name="default" extends="struts-default" namespace="/">
+        <action name="login" method="checkUser" class="com.rms.servlets.CheckUser">
+            <result name="isValid" type="redirect">view_project</result>
+            <result name="isNotValid">/index.jsp</result>
+        </action>
+        <action name="addProject" method="addProject" class="com.rms.servlets.UpdateProject">
+        	<result name="success" type="redirect">view_project</result>
+        	<result name="fail">/add_project.jsp</result>
+        </action>
+        <action name="editProject" method="editProject" class="com.rms.servlets.UpdateProject">
+        	<result name="success" type="redirect">view_project</result>
+			<result name="fail">/edit_project.jsp</result>
+        </action>
+        <action name="deleteProject" method="deleteProject" class="com.rms.servlets.UpdateProject">
+        	<result name="success" type="redirect">view_project</result>
+        </action>
+        <action name="addUser" method="addUser" class="com.rms.servlets.UpdateUser">
+        	<result name="success" type="redirect">view_user</result>
+        	<result name="fail">/add_user.jsp</result>
+        </action>
+        <action name="editUser" method="editUser" class="com.rms.servlets.UpdateUser">
+        	<result name="success" type="redirect">view_user</result>
+        	<result name="fail">/add_user.jsp</result>
+        </action>
+        <action name="deleteUser" method="deleteUser" class="com.rms.servlets.UpdateUser">
+        	<result name="success" type="redirect">view_user</result>
+        </action>
+        <action name="logout" class="com.rms.servlets.Logout">
+        	<result name="success" type="redirect">/index.jsp</result>
+        </action>
+ 
+		<action name="view_project" class="com.rms.servlets.ViewProject">
+			<result name="success">/view_project.jsp</result>
+		</action>
+		<action name="view_user" class="com.rms.servlets.ViewUser">
+			<result name="success">/manage_user.jsp</result>
+		</action>
+		
+		<action name="edit_project" class="com.rms.servlets.EditProject">
+			<result name="success">/edit_project.jsp</result>
+		</action>
+		<action name="edit_user" class="com.rms.servlets.EditUser">
+			<result name="success">/edit_user.jsp</result>
+		</action>
+	</package>
+</struts>

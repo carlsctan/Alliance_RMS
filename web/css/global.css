@@ -1,0 +1,13 @@
+a
+{
+	text-decoration: none;
+	font:15px arial,sans-serif;
+	font-size: 15px;
+	color: black;
+}
+
+#hidden
+{
+	display: none !important;
+	visibility: hidden !important;
+}

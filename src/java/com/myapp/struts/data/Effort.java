@@ -1,0 +1,76 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package com.myapp.struts.data;
+import java.sql.*;
+/**
+ *
+ * @author Ma.NelleYap
+ */
+public class Effort {
+    private int effort_id;
+    private int mem_id;
+    private float[]months;
+    private int year;
+    
+    public Effort(){
+    months=new float[12];    
+    }
+    
+    public int getMem_id() {
+        return mem_id;
+    }
+
+    public void setMem_id(int mem_id) {
+        this.mem_id = mem_id;
+    }
+    
+    public int getEffort_id() {
+        return effort_id;
+    }
+
+    public void setEffort_id(int effort_id) {
+        this.effort_id = effort_id;
+    }
+
+    public float[] getMonths() {
+        return months;
+    }
+
+    public void setMonths(float[] months) {
+        this.months = months;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+
+    public boolean setEffort(ResultSet rs){
+        String[] mth= {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
+        int i;
+       boolean notEmpty=false;
+        try{ 
+                notEmpty=rs.next();
+                effort_id=rs.getInt("effort_id");
+                mem_id = rs.getInt("mem_id");
+                year=rs.getInt("year");                        
+                for(i=0;i<12; i++){
+                    months[i]=rs.getFloat(mth[i]);
+                }
+                
+            }
+        catch (SQLException se) {
+            //Handle errors for JDBC
+            se.printStackTrace();
+        }
+        return notEmpty;
+    }
+    
+}

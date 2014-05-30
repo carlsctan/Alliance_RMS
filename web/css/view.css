@@ -1,0 +1,71 @@
+@CHARSET "ISO-8859-1";
+
+#account
+{
+	cursor: pointer;
+	position: absolute;
+	right: 0%;
+	margin-top: -65px;
+	margin-right: 220px;
+}
+
+#add-button
+{
+	background-color: red;
+	margin-top: 10px;
+	padding: 10px;
+	cursor: pointer;
+	border-radius: 5px;
+	width: 150px;
+}
+
+#add-label
+{
+	color: white;
+	font-size: 20px;
+	cursor: pointer;
+}
+
+body
+{
+	background-color: #E9E2FF;
+}
+
+#content
+{
+	padding-top: 100px;
+	padding: 30px;
+	position: absolute;
+	width: 1024px;
+	left: 50%;
+	top: 145px;
+	margin-left: -527px;
+}
+
+#header
+{
+	position: absolute;
+	padding-top: 10px;
+	padding-left: 20px;
+	background-color: #F4F4F4;
+	left: 50%;
+	top: 0%;
+	margin-left: -527px;
+	width: 1064px;
+	height: 90px;
+}
+
+#logout-button
+{
+	background-color: red;
+	color: white;
+	font-size: 20px;
+	padding: 10px;
+	cursor: pointer;
+	border-radius: 5px;
+	width: 150px;
+	position: absolute;
+	right: 0%;
+	margin-top: -65px;
+	margin-right: 30px;
+}

@@ -1,0 +1,78 @@
+#add-box
+{
+	width: 450px;
+	
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: -200px 0 0 -215px;
+}
+
+#add-but
+{
+	margin-left: -45px;
+}
+
+.add-button
+{
+	background-color: red;
+	margin-top: 30px;
+	padding: 10px;
+	border-radius: 5px;
+	width: 150px;
+	color: white;
+	font-size: 20px;
+	cursor: pointer;
+}
+
+#add-label
+{
+	color: white;
+	font-size: 20px;
+	cursor: pointer;
+}
+
+body, td
+{
+	font-size: 20px;
+	letter-spacing: 3px;
+	background-color: #F4F4F4;
+}
+
+#content
+{
+	position: absolute;
+	top: 0%;
+	left: 50%;
+	margin-left: -300px;
+	width: 600px;
+	height: 100%;
+	box-shadow: 0px 0px 100px #1C1C1C;
+}
+
+#error-label
+{
+	color: red;
+	font-size: 15px;
+}
+
+#field
+{
+	padding: 5px;
+	border-radius: 5px;
+	box-shadow: 3px 0px 10px #1C1C1C;
+	font-size: 20px;
+	letter-spacing: 3px;
+}
+
+#header
+{	
+	position: absolute;
+	padding-top: 30px;
+	padding-left: 50px;
+	left: 50%;
+	top: 0%;
+	margin-left: -300px;
+	width: 580px;
+	height: 90px;
+}
