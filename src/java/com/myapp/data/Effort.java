@@ -59,8 +59,8 @@ public class Effort {
         boolean notEmpty=false;
         try{ 
             notEmpty=rs.next();
-            effort_id=rs.getInt("effort_id");
-            mem_id = rs.getInt("mem_id");
+            effort_id=rs.getInt("gen_id");
+            mem_id = rs.getInt("emp_id");
             year=rs.getInt("year"); 
             for(i=0;i<12; i++){ 
                 months[i]=rs.getFloat(mth[i]); 

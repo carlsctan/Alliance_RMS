@@ -41,7 +41,7 @@
                 background-color: #f5f5f5;
             }
             .container-fluid{
-                background-color: #f5f5f5;
+
                  margin-left: auto;
      		margin-right: auto;
             }
@@ -55,7 +55,7 @@
             $(document).ready(function(){
                 $('#datatables').dataTable().columnFilter({
                     
-                    aoColumns: [ null,
+                    aoColumns: [ null,null,
 				     { type: "select", values: [ '1', '0.75', '0.5', '0.25', '0']  },
 				     { type: "select", values: [ '1', '0.75', '0.5', '0.25', '0']  },
                                      { type: "select", values: [ '1', '0.75', '0.5', '0.25', '0']  },
@@ -111,9 +111,10 @@
                 </nav>
                 
             </div>
-
+        </div>
+        <div class="container-fluid" >
                 <div class="row">
-                    <div class="col-xs-6 col-sm-4"> <!--summary div-->
+                    <div class="col-md-3"> <!--summary div-->
                         <table id="summary" class="table table-bordered"> <!--summary table-->
                             <thead>
                                 <tr>
@@ -153,12 +154,13 @@
                             </tbody>
                         </table>    <!--summary table-->
                     </div>
-                    <div class="col-md-7">	
+                    <div class="col-md-9">	
                 <!-- employee list table-->
                 <table id="datatables" class="display table">   
                     <thead>
                         <tr>
-                            <th>Name</th>  
+                            <th>Name</th>
+                            <th>Year</th>
                             <th>Jan</th>
                             <th>Feb</th>
                             <th>Mar</th>
@@ -171,7 +173,7 @@
                             <th>Oct</th>
                             <th>Nov</th>
                             <th>Dec</th>
-                            <th>Year</th>
+                            
                         </tr>
                     </thead>
                     <tfoot>
@@ -197,8 +199,9 @@
       			<logic:iterate name="employees" id="employee">
                                 <form id="form1">     
                                     <tr class="tbrow" data-toggle="modal" data-target="#myModal">
-                                        <input type="hidden" class="empID" value="<bean:write name="employee" property="empIDNum"/>"/>
+                                        <input type="hidden" class="empID" value="<bean:write name="employee" property="empIDNum"/>"/>                             
                                         <td><bean:write name="employee" property="lastName"/>,&nbsp;<bean:write name="employee" property="firstName"/>&nbsp;<bean:write name="employee" property="middleName"/></td>						
+                                        <td><bean:write name="employee" property="effort.year"/></td>   
                                         <td><bean:write name="employee" property="effort.months[0]"/></td>
                                         <td><bean:write name="employee" property="effort.months[1]"/></td>
                                         <td><bean:write name="employee" property="effort.months[2]"/></td>
@@ -211,7 +214,6 @@
                                         <td><bean:write name="employee" property="effort.months[9]"/></td>
                                         <td><bean:write name="employee" property="effort.months[10]"/></td>
                                         <td><bean:write name="employee" property="effort.months[11]"/></td>
-                                        <td><bean:write name="employee" property="effort.year"/></td>
                                     </tr>
                                 </form>
                         </logic:iterate>
@@ -232,7 +234,8 @@
                                     <tbody>
                                     <div class="container" id="modalbody">
 
-                                        </div><!-- /.col-lg-6 -->
+                                    </div><!-- /.col-lg-6 -->
+                                 
                                     </tbody>
                                 </table>
                             </div>
@@ -263,8 +266,16 @@
                                             +"College Course 2:  "+json.collegeCourse2+"</br>"
                                             +"College Year:  "+json.collegeYear+"</br>"
                                             +"Job Titles:  "+json.jobTitles+"</br>"
-                                            +"NRI Batch:  "+json.nriBatch+"</br>"
+                                            +"NRI Batch:  "+json.nriBatch+"</br></br>" 
+                                            +"<h4>Current Projects</h4>"
                                             );        
+                    });
+                    $.get('EmployeeProjectAction.do',{empID:employeeid},function(responseText2) { 
+                        var json2 = $.parseJSON(responseText2);
+                        $.each(json2, function(i, item) {
+                            $('#modalbody').append("</br><a href='ResourceSummary.jsp?param="+json2[i].id+"'>"+json2[i].project_name+"</a>"                                                                                   
+                                            ); 
+                        });       
                     });
                 });
             });

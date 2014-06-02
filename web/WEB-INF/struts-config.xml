@@ -65,6 +65,7 @@
                 validate="false"
                 cancellable="true">
         </action>
+        <action path="/EmployeeProjectAction" type="com.myapp.action.EmployeeProjectAction"/>
         <action path="/EmployeeInfoAction" type="com.myapp.action.EmployeeInfoAction"/>
     </action-mappings>
     

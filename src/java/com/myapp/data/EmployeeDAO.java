@@ -20,10 +20,10 @@ public class EmployeeDAO {
     public static List<Employee> getEmployeeList() throws Exception{
     List <Employee>e_list = new ArrayList<Employee>();                //List of Employees
     try {
-        String sql = "SELECT employee.*, effort.* "
+        String sql = "SELECT employee.*, gen_effort.* "
                 + "FROM employee "
-                + "LEFT JOIN employee_gen ON employee.EmpIDNum = employee_gen.emp_id "
-                + "LEFT JOIN effort ON employee_gen.effortgen_id = effort.effort_id";
+                + "LEFT JOIN gen_effort ON employee.EmpIDNum = gen_effort.emp_id ";
+            
         ResultSet rs = db.doQuery(sql);
         while(rs.next()){
             Employee e = new Employee(rs.getInt("EmpIDNum"), rs.getString("FirstName"), rs.getString("MiddleName"),

@@ -92,10 +92,9 @@ public class Summary {
 
     private void setCountJl() throws Exception {
         String[] mth= {"jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"};
-        String sql = "SELECT effort.* "
+        String sql = "SELECT gen_effort.* "
                 + "FROM employee "
-                + "LEFT JOIN employee_gen ON employee.EmpIDNum = employee_gen.emp_id "
-                + "LEFT JOIN effort ON employee_gen.effortgen_id = effort.effort_id";
+                + "LEFT JOIN gen_effort ON employee.EmpIDNum = gen_effort.emp_id ";
         ResultSet rs = db.doQuery(sql);
         while(rs.next()){
             int effortcount = 0;

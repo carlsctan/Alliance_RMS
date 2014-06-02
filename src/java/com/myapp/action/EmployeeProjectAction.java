@@ -1,9 +1,7 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
+ * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.myapp.action;
 
 import com.google.gson.Gson;
@@ -12,16 +10,19 @@ import com.myapp.data.EmployeeDAO;
 import com.myapp.data.ProjectDAO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
 /**
  *
- * @author Carl
+ * @author Michael
  */
-public class EmployeeInfoAction extends Action {
+public class EmployeeProjectAction extends org.apache.struts.action.Action {
+
+    /* forward name="success" path="" */
+    private static final String SUCCESS = "success";
+
     /**
      * This is the action called from the Struts framework.
      *
@@ -33,17 +34,16 @@ public class EmployeeInfoAction extends Action {
      * @return
      */
     @Override
-    public ActionForward execute(ActionMapping mapping, ActionForm form,
+   public ActionForward execute(ActionMapping mapping, ActionForm form,
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         
-        Employee employee = new Employee();
+        
         String json=null;
         int id = Integer.parseInt(request.getParameter("empID").toString());
         Gson gson = new Gson();
-        try {
-            employee = EmployeeDAO.getEmployeeInfo(id);           
-            json = gson.toJson(employee);
+        try {           
+            json = gson.toJson(ProjectDAO.getProjectList(id));
             response.setContentType("text/plain");  
             response.setCharacterEncoding("UTF-8"); 
             response.getWriter().write(json); 
