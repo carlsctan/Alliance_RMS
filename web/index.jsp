@@ -171,11 +171,13 @@
                             <th>Oct</th>
                             <th>Nov</th>
                             <th>Dec</th>
+                            <th>Year</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
-                            <th>Name</th>                                           
+                            <th>Filters</th>                                           
+                            <th>-</th>
                             <th>-</th>
                             <th>-</th>
                             <th>-</th>
@@ -209,6 +211,7 @@
                                         <td><bean:write name="employee" property="effort.months[9]"/></td>
                                         <td><bean:write name="employee" property="effort.months[10]"/></td>
                                         <td><bean:write name="employee" property="effort.months[11]"/></td>
+                                        <td><bean:write name="employee" property="effort.year"/></td>
                                     </tr>
                                 </form>
                         </logic:iterate>
@@ -247,7 +250,6 @@
             $(document).ready(function() {                        
                 $( "#empbody" ).delegate( "tr", "click", function( e ){  
                     var employeeid=$(this).find(".empID").val();
-
                     $.get('EmployeeInfoAction.do',{empID:employeeid},function(responseText) { 
                         var json = $.parseJSON(responseText);
                         $('#modalbody').html("<h4>Basic Information</h4></br>Employee ID:  "+json.empIDNum+"</br>"
@@ -262,8 +264,7 @@
                                             +"College Year:  "+json.collegeYear+"</br>"
                                             +"Job Titles:  "+json.jobTitles+"</br>"
                                             +"NRI Batch:  "+json.nriBatch+"</br>"
-                                            );       
-                        $('#modalbody').html("<h1>"+employeeid+"</h1>");     
+                                            );        
                     });
                 });
             });
