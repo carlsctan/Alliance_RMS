@@ -9,13 +9,13 @@
     <form-beans>
     	<form-bean name="MemberForm"
                    type="com.myapp.struts.form.MemberForm" />
-             <form-bean name="ProjectForm"
+        <form-bean name="ProjectForm"
                    type="com.myapp.struts.form.ProjectForm" />
-              <form-bean name="RetrieveProjectForm"
+        <form-bean name="RetrieveProjectForm"
                    type="com.myapp.struts.form.RetrieveProjectForm" />
-               <form-bean name="DeleteMemberForm"
+        <form-bean name="DeleteMemberForm"
                    type="com.myapp.struts.form.DeleteMemberForm" />
-               <form-bean name="DeleteProjectForm"
+        <form-bean name="DeleteProjectForm"
                    type="com.myapp.struts.form.DeleteProjectForm" />
     </form-beans>
     
@@ -40,7 +40,7 @@
         <action path="/Welcome" forward="/welcomeStruts.jsp"/>
         
 	<action path="/ProjectSummary" forward="/ProjectSummary.jsp"/>
-           <action path="/AddMemberAction"
+        <action path="/AddMemberAction"
                 type="com.myapp.struts.action.AddMemberAction"
                 name="MemberForm"
                 input="/ResourceSummary.jsp"
@@ -49,22 +49,21 @@
             <forward name="loginsuccess" path="/DisplayResourceAction.do" />
         </action>
             
-                   <action path="/DisplayProjectAction"
+        <action path="/DisplayProjectAction"
                 type="com.myapp.struts.action.DisplayProjectAction"
                 input="/ProjectSummary.jsp"
                 validate="false"
-                cancellable="true">     
-            
-
+                cancellable="true">                
         </action>
-          <action path="/DisplayResourceAction"
+        
+        <action path="/DisplayResourceAction"
                 type="com.myapp.struts.action.DisplayResourceAction"
                 name="RetrieveProjectForm"
                 input="/ProjectSummary.jsp"                          
                 validate="false"
                 cancellable="true">
-            
-          </action>
+        </action>
+        
         <action path="/DeleteMemberAction"
                 type="com.myapp.struts.action.DeleteMemberAction"
                 name="DeleteMemberForm"
@@ -72,17 +71,16 @@
                 validate="false"
                 cancellable="true">
             <forward name="resource" path="/DisplayResourceAction.do" />
-
         </action>
-             <action path="/AddProjectAction" 
+        
+        <action path="/AddProjectAction" 
                 type="com.myapp.struts.action.AddProjectAction"
                 name="ProjectForm"
                 input="/ProjectSummary.jsp"
                 validate="false"
                 cancellable="true">
-            
-
         </action>
+        
         <action path="/DeleteProjectAction" 
                 type="com.myapp.struts.action.DeleteProjectAction"
                 name="DeleteProjectForm"
@@ -90,15 +88,13 @@
                 validate="false"
                 cancellable="true">
         </action>
-                  <action path="/SetEffortAction"
+        
+        <action path="/SetEffortAction"
                 type="com.myapp.struts.action.SetEffortAction"
-               
-               
                 validate="false"
-                cancellable="true">
-            
-          </action>
-          <action input="/" name="MemberForm" path="/EmployeeEffortAction" scope="session" type="com.myapp.action.EmployeeEffortAction"/>
+                cancellable="true">  
+        </action>
+        <action path="/EmployeeEffortAction" type="com.myapp.action.EmployeeEffortAction"/>
         <action path="/EmployeeProjectAction" type="com.myapp.action.EmployeeProjectAction"/>
         <action path="/EmployeeInfoAction" type="com.myapp.action.EmployeeInfoAction"/>
     </action-mappings>

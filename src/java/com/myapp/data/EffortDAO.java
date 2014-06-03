@@ -20,13 +20,13 @@ public class EffortDAO {
     try {
         String sql = "SELECT gen_effort.* "
                 + "FROM employee "
-                + "LEFT JOIN gen_effort ON employee.EmpIDNum = gen_effort.emp_id ";
+                + "LEFT JOIN gen_effort ON employee.EmpIDNum = gen_effort.emp_id "
+                + "WHERE employee.EmpIDNum = "+id;
         ResultSet rs = db.doQuery(sql);
         while(rs.next()){
             Effort e = new Effort();
-            rs.previous();
-            e.setEffort(rs);
             e.setYear(rs.getInt("year"));
+            e.setEffort(rs);
             e_list.add(e);
         }
     } catch(SQLException se){

@@ -238,7 +238,7 @@
                                         <div class="container" id="modalbody2">
                                             </br>
                                             <h4>General Effort</h4>
-                                            <table id="modaltable" class="display table">   
+                                            <table class="display table">   
                                                 <thead>
                                                     <tr>
                                                         <th>Year</th>
@@ -256,7 +256,7 @@
                                                         <th>Dec</th>
                                                     </tr>
                                                 </thead>
-                                                <tbody>
+                                                <tbody id="modaltable" >
                                                     
                                                 </tbody>
                                             <table>
@@ -302,23 +302,23 @@
                                             ); 
                         });       
                     });
-                    $.get('EmployeeEffortAction.do',{empID:employeeid},function(responseText2) { 
-                        var json3 = $.parseJSON(responseText3);
+                    $.get('EmployeeEffortAction.do',{empID:employeeid},function(responseText3) { 
+                        var json3 = $.parseJSON(responseText3);                      
                         $.each(json3, function(i, item) {
                             $('#modaltable').append("<tr>"
-                                            +"<th>"+json3[i].year+"</th>"
-                                            +"<th>"+json3[i].months[0]+"</th>"
-                                            +"<th>"+json3[i].months[1]+"</th>"
-                                            +"<th>"+json3[i].months[2]+"</th>"
-                                            +"<th>"+json3[i].months[3]+"</th>"
-                                            +"<th>"+json3[i].months[4]+"</th>"
-                                            +"<th>"+json3[i].months[5]+"</th>"
-                                            +"<th>"+json3[i].months[6]+"</th>"
-                                            +"<th>"+json3[i].months[7]+"</th>"
-                                            +"<th>"+json3[i].months[8]+"</th>"
-                                            +"<th>"+json3[i].months[9]+"</th>"
-                                            +"<th>"+json3[i].months[10]+"</th>"
-                                            +"<th>"+json3[i].months[11]+"</th>"
+                                            +"<td>"+json3[i].year+"</th>"
+                                            +"<td>"+json3[i].months[0]+"</td>"
+                                            +"<td>"+json3[i].months[1]+"</td>"
+                                            +"<td>"+json3[i].months[2]+"</td>"
+                                            +"<td>"+json3[i].months[3]+"</td>"
+                                            +"<td>"+json3[i].months[4]+"</td>"
+                                            +"<td>"+json3[i].months[5]+"</td>"
+                                            +"<td>"+json3[i].months[6]+"</td>"
+                                            +"<td>"+json3[i].months[7]+"</td>"
+                                            +"<td>"+json3[i].months[8]+"</td>"
+                                            +"<td>"+json3[i].months[9]+"</td>"
+                                            +"<td>"+json3[i].months[10]+"</td>"
+                                            +"<td>"+json3[i].months[11]+"</td>"
                                             +"</tr>"                                                                                  
                             ); 
                         });       
