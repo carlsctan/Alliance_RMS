@@ -7,6 +7,7 @@
 package com.myapp.data;
 
 import java.sql.ResultSet;
+import java.util.Calendar;
 
     
 /**
@@ -91,10 +92,13 @@ public class Summary {
     }
 
     private void setCountJl() throws Exception {
+        Calendar now = Calendar.getInstance();
+        int year = now.get(Calendar.YEAR);
+        String stryear = String.valueOf(year);
         String[] mth= {"jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"};
         String sql = "SELECT gen_effort.* "
                 + "FROM employee "
-                + "LEFT JOIN gen_effort ON employee.EmpIDNum = gen_effort.emp_id ";
+                + "LEFT JOIN gen_effort ON employee.EmpIDNum = gen_effort.emp_id AND gen_effort.year ="+stryear;
         ResultSet rs = db.doQuery(sql);
         while(rs.next()){
             int effortcount = 0;

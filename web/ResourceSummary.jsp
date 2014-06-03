@@ -9,47 +9,29 @@
 <!DOCTYPE html>
 <%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean" %>
 <%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
+<%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic" %>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <title>RESOURCE SUMMARY</title>
-        <script type="text/javascript" charset="utf-8" src="jquery.js"></script>
-   <script type="text/javascript" charset="utf-8" src="bootstrap-3.1.1/dist/js/bootstrap.js"></script>
-        <script type="text/javascript" charset="utf-8" src="jquery.dataTables.js"></script>
-	<script type="text/javascript" charset="utf-8" src="jquery.dataTables.css"></script>
-   <link rel="stylesheet" type="text/css" href="bootstrap-3.1.1/dist/css/bootstrap.min.css"/>
+        <link type="text/css" rel="stylesheet" href="css/view.css">
+        <link type="text/css" rel="stylesheet" href="media/css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="media/css/dataTables.bootstrap.css">
+        <script src="media/js/complete.js" type="text/javascript" ></script>
+        <script src="media/js/jquery.js" type="text/javascript"></script>
+        <script src="media/js/bootstrap.js" type="text/javascript"></script>
+        <script src="media/js/jquery.dataTables.js" type="text/javascript"></script>    
+        <script src="media/js/jquery.dataTables.columnFilter.js" type="text/javascript" ></script>
+         <link rel="stylesheet" type="text/css" href="media/css/bootstrap.min.css"/>
+        <link rel="stylesheet" type="text/css" href="bootstrap-3.1.1/docs/assets/css/docs.min.css"/>
            <style type="text/css" title="currentStyle">
         @import "demo_table.css";
         </style>
   </head>    <body data-spy="scroll" data-target=".bs-docs-sidebar">
-            <%!
-                com.myapp.struts.data.DBconnection db = new com.myapp.struts.data.DBconnection();
-                com.myapp.struts.data.Employee emp=new com.myapp.struts.data.Employee();
-                com.myapp.struts.data.Effort effort=new com.myapp.struts.data.Effort();
-                java.sql.Connection conn;
-                java.sql.ResultSet rs, ra;
-                int s;
-                String sql;
-                int id;
-                String pID;
-            %>
-                     <%  if(request.getParameter("param") != null)
-            {
-                session.setAttribute("pID", request.getParameter("param"));
-            }
-                pID = (String) session.getAttribute("pID" );
-                conn=db.toConnect();   
-                sql="Select * from project where project_id= " + id ;
-                
-                db.setSql(sql);
-                db.executeQuery(conn);    
-                ra=db.getRs();  
-                ra.next();
-               
-                %>
+
     <div class="container-fluid" style="width:1000px; margin-left:auto; margin-right:auto">
     <div class="container-fluid well" style="background-color:white">
-    <a class="brand" href="#"> <img src="alliancesoftwarenew.jpg" style="height: 90px; margin-top:-20px;width:300px;margin-bottom:-20px" ></a>
+    <a class="brand" href="#"> <img src="images/alliancesoftwarenew.jpg" style="height: 90px; margin-top:-20px;width:300px;margin-bottom:-20px" ></a>
    
    </div> 
         
@@ -57,34 +39,25 @@
                     <div class="container-fluid">
 			<ul class="nav navbar-nav ">
                             <li><a href="view_project">Project Outlook Summary</a></li>
-                            <li><a href="PrStart.jsp"> Project Summary</a></li>
+                            <li><a href="DisplayProjectAction.do"> Project Summary</a></li>
                             <li><a href="populateAction.do"> Resource Summary</a></li>
 			</ul>
 			<form action="logout.action" method="post">
 				<input type="submit" id="logout-button" value="Log out"/>
 			</form>
-            </div>
+                    </div>
                 </nav>
 
-        <% 
-                        conn=db.toConnect();                        
-                 sql="Select * from project where project_id= " + session.getAttribute("pID") ;
-                
-                db.setSql(sql);
-                db.executeQuery(conn);    
-                ra=db.getRs();  
-                ra.next();
-                id=ra.getInt("project_id");
-        %>
+
           <div style="margin-left:20px;margin-right:20px">
-          <p class="head"><strong>Project Name:</strong> <%= ra.getString("project_name")%></p>
-          <p class="head"><strong>Start Date:</strong> <%= ra.getString("start_date")%></p>
-          <p class="head"><strong>End Date:</strong> <%= ra.getString("end_date")%></p>
-          <p class="head"><strong>Business Unit: </strong><%= ra.getString("business_unit")%></p>
-          <p class="head"><strong>Project Type: </strong><%= ra.getString("type")%></p>
-          <p class="head"><strong>Project Status:</strong> <%= ra.getString("status")%></p>
-          
-          <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#AddMember"> <img src="add_member.png">  Add member</button>
+          <p class="head"><strong>Project Name:</strong> <bean:write name="project" property="project_name"/></p>
+          <p class="head"><strong>Start Date:</strong> <bean:write name="project" property="start_date"/></p>
+          <p class="head"><strong>End Date:</strong> <bean:write name="project" property="end_date"/></p>
+          <p class="head"><strong>Business Unit: </strong><bean:write name="project" property="business_unit"/></p>
+          <p class="head"><strong>Project Type: </strong> <bean:write name="project" property="type"/></p>
+          <p class="head"><strong>Project Status:</strong> <bean:write name="project" property="status"/></p>
+          <!--AddMember Modal -->
+          <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#AddMember"> <img src="images/add_member.png">  Add member</button>
           <div class="modal fade" id="AddMember" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                    <div class="modal-dialog">
                        <div class="modal-content">
@@ -92,176 +65,22 @@
                 <div class="panel panel-primary">  <div class="panel-heading">Add member</div>
                     <div class="panel-body">
                         <div style="margin-top:20px;">  
-  
-            <html:form action="AddMemberAction">
+                <%int project_id = ((com.myapp.struts.data.Project) pageContext.findAttribute("project")).getId(); %>
+                <html:form action="AddMemberAction">
                    
                         <label for="Member"><strong>Member name</strong></label>        
                  <select property="member" name="member" class="form-control" style="width:300px">
-            <%
+                    <logic:iterate name="Employee" id="EmployeeId">
+             
+              <option value= <bean:write name="EmployeeId" property="emp_id"/>><bean:write name="EmployeeId" property="name"/> </option>     
+               
+                </logic:iterate> </select> <br>
+                                                                            
+                        <input type="hidden" value="<%=project_id%>" property="proj_id" name="proj_id"/>
+                         <input type="hidden" value="2013" property="year" name=year"/>
 
-            
-                sql="Select * from employee";
-                db.setSql(sql);
-                db.executeQuery(conn);    
-                rs=db.getRs();  
-                while(rs.next()){
-                   %>   
-              <option value=<%=rs.getInt("EmpIDNum")%> > <%= rs.getString("FirstName")+ " " + rs.getString("MiddleName") + " " + rs.getString("LastName")%> </option>     
-                  <% } %>
-                 </select> <br>
-                 
-                 <label for="Year"><strong>Year</strong></label>
- 
-                 <select property="year" name="year" class="form-control" style="width:80px">
-                    
-                  <%
-
-            
-                Date startDate=ra.getDate("start_date");
-                Date endDate=ra.getDate("end_date");
-              /*  SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
-                String sqlDate = sdf.format(rs.getDate("start_date"));
-                int start = Integer.parseInt(sqlDate);
-                sqlDate = sdf.format(rs.getDate("end_date"));*/
-                int start = startDate.getYear();
-                int end = endDate.getYear();
-                for(; start<=end ;start++){
-                                 %>   
-                                 <option><%=start + 1900%> </option>     
-                  <% } %>                     
-                     
-                     
-                     
-                     
-                 </select>
-                 <br>
-                <label for="Effort"><strong>Effort</strong></label>
-                <table> <tbody><tr>
-                    <input type="hidden" value="<%= id %>" property="proj_id" name="proj_id"/>
-                            <td> <label for="Effort">Jan</label>
-                
-                    
-                <select property="jan" name="jan" class="form-control" style="width:80px">
-                <option>0</option>
-                <option>0.25</option>
-                <option>0.50</option>
-                <option>0.75</option>
-                <option>1</option>
-                </select>
-                            </td>
-                            <td><label for="Effort">Feb</label>
-                <select property="feb" name="feb" class="form-control" style="width:80px">
-                <option>0</option>
-                <option>0.25</option>
-                <option>0.50</option>
-                <option>0.75</option>
-                <option>1</option>
-                </select></td>
-                                
-                <td>
-                    <label for="Effort">Mar</label>
-                    <select property="mar" name="mar" class="form-control" style="width:80px">
-                        <option>0</option>
-                        <option>0.25</option>
-                        <option>0.50</option>
-                        <option>0.75</option>
-                        <option>1</option>
-                    </select>
-                </td>
-                <td>
-                    <label for="Effort">Apr</label>
-                    <select property="apr" name="apr" class="form-control" style="width:80px">
-                        <option>0</option>
-                        <option>0.25</option>
-                        <option>0.50</option>
-                        <option>0.75</option>
-                        <option>1</option>
-                    </select>
-                </td>                        
-                <td>
-                    <label for="Effort">May</label>
-                    <select property="may" name="may" class="form-control" style="width:80px">
-                        <option>0</option>
-                        <option>0.25</option>
-                        <option>0.50</option>
-                        <option>0.75</option>
-                        <option>1</option>
-                    </select>
-                </td>     
-                <td>
-                    <label for="Effort">Jun</label>
-                    <select property="jun" name="jun" class="form-control" style="width:80px">
-                        <option>0</option>
-                        <option>0.25</option>
-                        <option>0.50</option>
-                        <option>0.75</option>
-                        <option>1</option>
-                    </select>
-                </td>                
-                </tr>
-                <tr>
-                <td>
-                    <label for="Effort">Jul</label>
-                    <select property="jul" name="jul" class="form-control" style="width:80px">
-                        <option>0</option>
-                        <option>0.25</option>
-                        <option>0.50</option>
-                        <option>0.75</option>
-                        <option>1</option>
-                    </select>
-                </td> 
-                <td>
-                    <label for="Effort">Aug</label>
-                    <select property="aug" name="aug" class="form-control" style="width:80px">
-                        <option>0</option>
-                        <option>0.25</option>
-                        <option>0.50</option>
-                        <option>0.75</option>
-                        <option>1</option>
-                    </select>
-                </td>  
-                <td>
-                    <label for="Effort">Sep</label>
-                    <select property="sep" name="sep" class="form-control" style="width:80px">
-                        <option>0</option>
-                        <option>0.25</option>
-                        <option>0.50</option>
-                        <option>0.75</option>
-                        <option>1</option>
-                    </select>
-                </td>
-                <td>
-                    <label for="Effort">Oct</label>
-                    <select property="oct" name="oct" class="form-control" style="width:80px">
-                        <option>0</option>
-                        <option>0.25</option>
-                        <option>0.50</option>
-                        <option>0.75</option>
-                        <option>1</option>
-                    </select>
-                </td>   
-                <td>
-                    <label for="Effort">Nov</label>
-                    <select property="nov" name="nov" class="form-control" style="width:80px">
-                        <option>0</option>
-                        <option>0.25</option>
-                        <option>0.50</option>
-                        <option>0.75</option>
-                        <option>1</option>
-                    </select>
-                </td>  
-                <td>
-                    <label for="Effort">Dec</label>
-                    <select property="dec" name="dec" class="form-control" style="width:80px">
-                        <option>0</option>
-                        <option>0.25</option>
-                        <option>0.50</option>
-                        <option>0.75</option>
-                        <option>1</option>
-                    </select>
-                </td>                
-                </tr>    
-                    </tbody> </table>
+<div id='show'></div>
+                </div>
             <br>
                     <button type="submit" id="submitAddMember" class="btn btn-success">OK</button>
                     <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Cancel</button>
@@ -273,9 +92,11 @@
                     </div>   
                     </div></div></div>
                     </div>
-                   </div></div>
-    	
-    	<div class="container-fluid" >
+                   </div>
+           <!--AddMember Modal --></div>              
+                
+
+<div class="container-fluid" >
     	   <table class="table table-hover table-condensed" style="margin-top:15px">
     	      <thead>
     	         <tr>
@@ -307,77 +128,126 @@
     	      <td><strong>
     	         Year
     	          </strong>
-    	      </td>                          
+    	      </td> 
+               <td><strong>
+    	         Edit
+    	          </strong>
+              <td><strong>
+    	         Delete
+    	          </strong>
+    	      </td>   
     	      </tr>
   </thead>
     	   
     	   <tbody>
-
-            <%
-                sql="Select * from employee join member on employee.EmpIDNum= member.emp_id"
-                + " join memlist on member.mem_id= memlist.mem_id && memlist.proj_id= '" +id+"'";                                   
                
-                conn=db.toConnect();
-                db.setSql(sql);
-                db.executeQuery(conn);    
-                rs=db.getRs();
-                while (emp.setEmployee(rs)!=false)
-                {
-                    s=0; 
-                    float[] months=new float[12];
-                    int mem_id=rs.getInt("mem_id");
-                    sql="Select * from effort where mem_id='" + mem_id +"'";
-                    db.setSql(sql);
-                    db.executeQuery(conn);
-            %>
-    	        <tr>
-    	            <td>
-    	                <%= emp.getEmp_fn() + " " + emp.getEmp_mn() + " " + emp.getEmp_ln()%>
-    	            </td>
-                    <%
-                       while(effort.setEffort(db.getRs())!=false)
-                       {
-                           
-                        months=effort.getMonths();
-                        if(s==1){
-                    %>
-                    <td></td>
-                    <% } %>
-                    <%
-                        for(int i=0;i<12;i++){                           
-                    %>
-    	                
-                         <td>
-    	                    <%= months[i]%>
-    	                 </td>
-                    <%  
-                        } 
-                        s=1;
-                    %>    
-                         <td>
-    	                    <%= effort.getYear() %>
-    	                 </td>                    
-        	</tr>
-            <% 
-                    }
-                } 
-            %>
+ <logic:iterate name="empmem" id="emp_memID" > 
+   <%int i=0;%>
+                                                                                              
+     <tr>
+      
+         <%int m_id = ((com.myapp.struts.data.Employee) pageContext.findAttribute("emp_memID")).getMem_id(); %>
+        
+         <td>
+            <bean:write name="emp_memID" property="name"/>
+         </td>
+        
+         <logic:iterate name="effort" id="effortID">
    
-                   <tr>
-                       <td>${member.name}</td>
-                       <td>${member.months[0]}</td>
-                       <td>${member.months[1]}</td>
-                       <td>${member.months[2]}</td>
-                       <td>${member.months[3]}</td>
-                       <td>${member.months[4]}</td>
-                       <td>${member.months[5]}</td>
-                       <td>${member.months[6]}</td>
-                       <td>${member.months[7]}</td>
-                       <td>${member.months[8]}</td>
-                       <td>${member.months[9]}</td>
-                       <td>${member.months[10]}</td>
-                       <td>${member.months[11]}</td>
-                   </tr>
+<%int mem_id = ((com.myapp.struts.data.Effort) pageContext.findAttribute("effortID")).getMem_id(); %>
+        
+           
+             <%
+          
+           
+            if(m_id==mem_id){
+                if(i==1){
+            %>
+            <td></td> <%}%>
+          <td>
+            <bean:write name="effortID" property="months[0]"/>
+         </td>
+                   <td>
+            <bean:write name="effortID" property="months[1]"/>
+         </td>
+                   <td>
+            <bean:write name="effortID" property="months[2]"/>
+         </td>
+                   <td>
+            <bean:write name="effortID" property="months[3]"/>
+         </td>
+                   <td>
+            <bean:write name="effortID" property="months[4]"/>
+         </td>
+                   <td>
+            <bean:write name="effortID" property="months[5]"/>
+         </td>
+                   <td>
+            <bean:write name="effortID" property="months[6]"/>
+         </td>
+                   <td>
+            <bean:write name="effortID" property="months[7]"/>
+         </td>
+                   <td>
+            <bean:write name="effortID" property="months[8]"/>
+         </td>
+                   <td>
+            <bean:write name="effortID" property="months[9]"/>
+         </td>
+                  <td>
+            <bean:write name="effortID" property="months[10]"/>
+         </td>
+                 <td>
+            <bean:write name="effortID" property="months[11]"/>
+         </td>
+                  <td>
+                      <%!int yr;%>
+                      <bean:define id="yr">
+            <bean:write name="effortID" property="year"/>
+                      </bean:define>
+                      <%=yr%>
+                      
+         </td>
+                                                
+                                                <td><%=yr%></td>
+                                                  <!--Set Effort Modal -->                  
+                   <div class="modal fade" id="SetEffort" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                   <div class="modal-dialog">
+                       <div class="modal-content">
+                           <div class="modal-body">
+                <div class="panel panel-primary">  <div class="panel-heading">Add member</div>
+                    <div class="panel-body">
+                        <div style="margin-top:20px;">  
+                      <bean:write name="effortID" property="year"/>
+                        </div>
+                    </div>
+                        </div>
+                        </div>
+                        </div></div></div>
+        <!--/Set Effort Modal-->  
+                                                <td>
+                                                
+                                                              
+                                  <button  value='' type="submit" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#SetEffort">Edit</button>
+                                 
+                             
+                         </td>
+                       
+                         
+              <td>
+                             <html:form action="DeleteMemberAction">
+                                 <input type="hidden" value="<%=yr%>" name="year" property="year"/>
+                                 <input type="hidden" value="<%=m_id%>" name="id" property="id"/>
+                                 <button type="submit" class="btn btn-danger">Delete</button>
+                             </html:form>
+                         </td>
+
+     <tr></tr>
+<%i=1;}%>
+         </logic:iterate> 
+     </tr>
+     
+ </logic:iterate>
                        
                   
     	   </tbody>
@@ -387,4 +257,9 @@
     	</div>
     	</div>
     </body>
-</html>
+</html>   
+ <script type="text/javascript">
+      $(document).ready( function () {
+   $('#effort').hide();
+} );
+	</script>

@@ -79,7 +79,7 @@
 							<label><a href="edit_user?username=<s:property value="username"/>"><img title="Edit User" width="25px" src="images/edit-icon.png"></a></label>
 						</td>
 						<td>
-							<label onclick="deleteUser('<s:property value="username"/>')"><a href='#'><img title='Delete User' width='25px' src="images/delete-icon.png"></a></label>
+							<label onclick="deleteUser('<s:property value="username"/>');"><a href='#'><img title='Delete User' width='25px' src="images/delete-icon.png"></a></label>
 						</td>
 					</tr>
 				</s:iterator>

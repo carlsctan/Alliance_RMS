@@ -1,5 +1,7 @@
 package com.rms.servlets;
 
+import com.google.gson.Gson;
+import com.myapp.data.EmployeeDAO;
 import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,6 +11,7 @@ import org.apache.struts2.ServletActionContext;
 
 import com.rms.beans.*;
 import com.opensymphony.xwork2.ActionSupport;
+import javax.servlet.http.HttpServletResponse;
 
 public class EditProject extends ActionSupport{
 	private static final long serialVersionUID = 1L;
@@ -56,21 +59,30 @@ public class EditProject extends ActionSupport{
 		listUnit = new ArrayList<Status>();
 		listType = new ArrayList<Status>();
 		
+                HttpServletResponse response = ServletActionContext.getResponse();
 		HttpServletRequest request = ServletActionContext.getRequest();
 		HttpSession session = ServletActionContext.getRequest().getSession(false);
 
 		ABED db = new ABED();
 		
 		String data[][] = new String[1][9];
-		String id = request.getParameter("project_id");
+		int id = Integer.parseInt(request.getParameter("project_id").toString());
 
 		db.setDatabase("/alliance_project_outlook", "root", "", "//localhost");
 		db.browseEntry("project", data, 9, "project_id="+ id);
-		
-		session.setAttribute("id", id);
-			
-		listProject.add(new Project(data[0][1], data[0][2], data[0][3], data[0][4], data[0][5], data[0][6], data[0][7], Integer.parseInt(data[0][0]), data[0][8]));
-		
+		String json=null;
+                Gson gson = new Gson();
+                try {          
+                    listProject.add(new Project(data[0][1], data[0][2], data[0][3], data[0][4], data[0][5], data[0][6], data[0][7], Integer.parseInt(data[0][0]), data[0][8]));
+                    json = gson.toJson(listProject);
+                    response.setContentType("text/plain");  
+                    response.setCharacterEncoding("UTF-8"); 
+                    response.getWriter().write(json); 
+
+                }catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+                
 		if(data[0][5].equals("no movement"))
 			listStatus.add(new Status("no movement", "selected"));
 		else
@@ -126,6 +138,6 @@ public class EditProject extends ActionSupport{
 		else
 			listType.add(new Status("Time and Material", ""));
 		
-		return "success";
+		return null;
 	}
 }

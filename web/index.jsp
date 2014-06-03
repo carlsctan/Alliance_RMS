@@ -107,7 +107,7 @@
 			<form action="logout.action" method="post">
 				<input type="submit" id="logout-button" value="Log out"/>
 			</form>
-            </div>
+                    </div>
                 </nav>
                 
             </div>
@@ -232,10 +232,35 @@
                             <div class="modal-body">
                                 <table>
                                     <tbody>
-                                    <div class="container" id="modalbody">
+                                        <div class="container" id="modalbody">
 
-                                    </div><!-- /.col-lg-6 -->
-                                 
+                                        </div>
+                                        <div class="container" id="modalbody2">
+                                            </br>
+                                            <h4>General Effort</h4>
+                                            <table id="modaltable" class="display table">   
+                                                <thead>
+                                                    <tr>
+                                                        <th>Year</th>
+                                                        <th>Jan</th>
+                                                        <th>Feb</th>
+                                                        <th>Mar</th>
+                                                        <th>Apr</th>
+                                                        <th>May</th>
+                                                        <th>Jun</th>
+                                                        <th>Jul</th>
+                                                        <th>Aug</th>
+                                                        <th>Sept</th>
+                                                        <th>Oct</th>
+                                                        <th>Nov</th>
+                                                        <th>Dec</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    
+                                                </tbody>
+                                            <table>
+                                        </div>
                                     </tbody>
                                 </table>
                             </div>
@@ -273,8 +298,29 @@
                     $.get('EmployeeProjectAction.do',{empID:employeeid},function(responseText2) { 
                         var json2 = $.parseJSON(responseText2);
                         $.each(json2, function(i, item) {
-                            $('#modalbody').append("</br><a href='ResourceSummary.jsp?param="+json2[i].id+"'>"+json2[i].project_name+"</a>"                                                                                   
+                            $('#modalbody').append("</br>"+json2[i].project_name                                                                                   
                                             ); 
+                        });       
+                    });
+                    $.get('EmployeeEffortAction.do',{empID:employeeid},function(responseText2) { 
+                        var json3 = $.parseJSON(responseText3);
+                        $.each(json3, function(i, item) {
+                            $('#modaltable').append("<tr>"
+                                            +"<th>"+json3[i].year+"</th>"
+                                            +"<th>"+json3[i].months[0]+"</th>"
+                                            +"<th>"+json3[i].months[1]+"</th>"
+                                            +"<th>"+json3[i].months[2]+"</th>"
+                                            +"<th>"+json3[i].months[3]+"</th>"
+                                            +"<th>"+json3[i].months[4]+"</th>"
+                                            +"<th>"+json3[i].months[5]+"</th>"
+                                            +"<th>"+json3[i].months[6]+"</th>"
+                                            +"<th>"+json3[i].months[7]+"</th>"
+                                            +"<th>"+json3[i].months[8]+"</th>"
+                                            +"<th>"+json3[i].months[9]+"</th>"
+                                            +"<th>"+json3[i].months[10]+"</th>"
+                                            +"<th>"+json3[i].months[11]+"</th>"
+                                            +"</tr>"                                                                                  
+                            ); 
                         });       
                     });
                 });

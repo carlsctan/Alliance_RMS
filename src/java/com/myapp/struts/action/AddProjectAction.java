@@ -38,8 +38,8 @@ public ActionForward execute(
         String sql;
         String N = proj.getProject_name(), type = proj.getType(), status = proj.getStatus(), bu = proj.getBusiness_unit()
                 , start = proj.getStart_date(), end = proj.getEnd_date();
-       start = start.replaceAll("-","");
-       end = end.replaceAll("-","");
+       start = start.replaceAll("/","");
+       end = end.replaceAll("/","");
        
                                     sql="INSERT INTO `project`(`project_name`,`start_date`,`end_date`,`type`,`status`,`business_unit`)" 
                    + " VALUES ('"+ N + "'," + start + "," + end + ",'" + type + "','" + status + "','" + bu + "')";
@@ -48,7 +48,7 @@ public ActionForward execute(
                 db.setSql(sql);
                 db.executeUpdate(conn);
                 System.out.println((sql));
-        return mapping.findForward("success");
+        return mapping.findForward("projectsummary");
        
 }
 public static void main (String[] args){

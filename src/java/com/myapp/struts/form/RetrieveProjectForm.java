@@ -6,8 +6,6 @@
 
 package com.myapp.struts.form;
 
-
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import org.apache.struts.action.ActionForm;
 
@@ -15,40 +13,28 @@ import org.apache.struts.action.ActionForm;
  *
  * @author Ma.NelleYap
  */
-public class ProjectForm extends ActionForm{
+public class RetrieveProjectForm extends ActionForm{
+    private int id;
     private String project_name;
     private String type;
     private String status;
     private String business_unit;
-    private String start_date;
-    private String end_date;
+    private Date start_date;
+    private Date end_date;
     private String color;
-   
 
-
-    public String getColor() {
-        return color;
+    public int getId() {
+        return id;
     }
 
-    public void setColor(String color) {
-        this.color = color;
-    }
-    
-    public String getStart_date() {
-        return start_date;
+    public void setId(int id) {
+        this.id = id;
+       
     }
 
-    public void setStart_date(String start_date) {
-        this.start_date = start_date;
-    }
 
-    public String getEnd_date() {
-        return end_date;
-    }
 
-    public void setEnd_date(String end_date) {
-        this.end_date = end_date;
-    }
+
 
     public String getProject_name() {
         return project_name;
@@ -82,16 +68,29 @@ public class ProjectForm extends ActionForm{
         this.business_unit = business_unit;
     }
 
-   
-    public int getYear(Date x)
-    {
-        return x.getYear();
+    public Date getStart_date() {
+        return start_date;
     }
-    public String getProperDate(Date D)
-    {
-        
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyymmdd");
-        String sqlDate = sdf.format(D);
-        return sqlDate;
+
+    public void setStart_date(Date start_date) {
+        this.start_date = start_date;
     }
+
+    public Date getEnd_date() {
+        return end_date;
+    }
+
+    public void setEnd_date(Date end_date) {
+        this.end_date = end_date;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+    
+    
 }

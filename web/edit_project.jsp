@@ -27,24 +27,24 @@
 					<s:iterator value="listProject">
 						<tr>
 							<td>Project Name:</td>
-							<td><input autocomplete="off" id="field1" type="text"
+							<td><input autocomplete="off" required="required" id="field1" type="text"
 								name="projectname" size="20"
 								value="<s:property value="projectname"/>" /></td>
 						</tr>
 						<tr>
 							<td>Date From:</td>
-							<td><input type="date" id="field2" name="from"
+							<td><input type="date" id="field2" required="required" name="from"
 								value="<s:property value="from"/>" /></td>
 						</tr>
 						<tr>
 							<td>Date To:</td>
-							<td><input type="date" id="field3" name="to"
+							<td><input type="date" id="field3" required="required" name="to"
 								value="<s:property value="to"/>" /></td>
 						</tr>
 						<tr>
 							<td>Status:</td>
 							<td>
-								<select name="status" id="field4">
+								<select name="status" required="required" id="field4">
 									<option value="null"></option>
 									<s:iterator value="listStatus">
 										<option value="<s:property value="name"/>" <s:property value="status"/>><s:property value="name"/></option>
@@ -55,7 +55,7 @@
 						<tr>
 							<td>Business Unit:</td>
 							<td>
-								<select name="businessunit" id="field5">
+								<select name="businessunit" required="required" id="field5">
 									<option value="null"></option>
 									<s:iterator value="listUnit">
 										<option value="<s:property value="name"/>" <s:property value="status"/>><s:property value="name"/></option>
@@ -66,7 +66,7 @@
 						<tr>
 							<td>Project Type:</td>
 							<td>
-								<select name="projecttype" id="field6">
+								<select name="projecttype" required="required" id="field6">
 									<option value="null"></option>
 									<s:iterator value="listType">
 										<option value="<s:property value="name"/>" <s:property value="status"/>><s:property value="name"/></option>
@@ -76,16 +76,12 @@
 						</tr>
 						<tr>
 							<td>Resources Needed:</td>
-							<td><input autocomplete="off" id="field7" type="text"
+							<td><input autocomplete="off" required="required" id="field7" type="text"
 								name="resourcesneeded" size="20"
 								value="<s:property value="resourcesneeded"/>" /></td>
 						</tr>
 
-						<tr>
-							<td>Remarks:</td>
-							<td><textarea id="field8" name="remarks"><s:property
-										value="remarks" /></textarea></td>
-						</tr>
+						
 						<tr>
 							<td></td>
 							<td><input class="edit-button" id="edit-but" type="submit"
@@ -110,5 +106,6 @@
 				</script>
 		</s:div>
 	</s:div>
+
 </body>
 </html>

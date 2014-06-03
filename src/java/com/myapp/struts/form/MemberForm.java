@@ -16,7 +16,7 @@ import org.apache.struts.action.ActionMapping;
  */
 public class MemberForm extends ActionForm{
     private int member;
-    private String jan;
+    private final int jan=0;
     private String feb;
     private String mar;
     private String apr;
@@ -30,7 +30,9 @@ public class MemberForm extends ActionForm{
     private String dec;
     private int proj_id;
     private String year;
-
+   public MemberForm(){
+ 
+   }
     public String getYear() {
         return year;
     }
@@ -47,13 +49,6 @@ public class MemberForm extends ActionForm{
         this.proj_id = proj_id;
     }
 
-    public String getJan() {
-        return jan;
-    }
-
-    public void setJan(String jan) {
-        this.jan = jan;
-    }
 
     public String getFeb() {
         return feb;

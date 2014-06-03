@@ -18,8 +18,35 @@ public class Employee{
     private String emp_fn;
     private String emp_mn;
     private String emp_ln;
-    private Date dateHired;
+    private String name;
+    private int mem_id;   
+    
+    public Employee(){}
+    
+    public Employee(int id, String fn, String mn, String ln){
+        emp_id=id;
+        emp_fn=fn;
+        emp_mn=mn;
+        emp_ln=ln;
+       
+    }
 
+    public int getMem_id() {
+        return mem_id;
+    }
+
+    public void setMem_id(int mem_id) {
+        this.mem_id = mem_id;
+    }
+   
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+    
     public int getEmp_id() {
         return emp_id;
     }
@@ -52,13 +79,6 @@ public class Employee{
         this.emp_ln = emp_ln;
     }
 
-    public Date getDateHired() {
-        return dateHired;
-    }
-
-    public void setDateHired(Date dateHired) {
-        this.dateHired = dateHired;
-    }
 
     public boolean setEmployee(ResultSet rs){
        boolean notEmpty=false;
@@ -68,7 +88,7 @@ public class Employee{
                 emp_fn = rs.getString("FirstName");
                 emp_mn=rs.getString("MiddleName");
                 emp_ln=rs.getString("LastName");
-                dateHired= rs.getDate("DateHired");
+              
 
                               
                 System.out.print(", emp_fn " + emp_fn );
@@ -80,5 +100,8 @@ public class Employee{
             se.printStackTrace();
         }
         return notEmpty;
+    }
+    public void setName(String fn, String mn, String ln){
+          name= fn + " " + mn + " " + ln;
     }
 }

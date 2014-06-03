@@ -33,16 +33,16 @@
 					
 					<tr>
 						<td>First Name:</td>
-						<td><input autocomplete="off" id="field1" type="text" name="first_name" size="20" value="<s:property value="firstname"/>"/></td>
+						<td><input autocomplete="off" required="required" id="field1" type="text" name="first_name" size="20" value="<s:property value="firstname"/>"/></td>
 					</tr>
 					
 					<tr>
 						<td>Middle Name:</td>
-						<td><input autocomplete="off" id="field2" type="text" name="middle_name" size="20" value="<s:property value="middlename"/>"/></td>
+						<td><input autocomplete="off" required="required" id="field2" type="text" name="middle_name" size="20" value="<s:property value="middlename"/>"/></td>
 					</tr>
 					<tr>
 						<td>Last Name:</td>
-						<td><input autocomplete="off" id="field3" type="text" name="last_name" size="20" value="<s:property value="lastname"/>"/></td>
+						<td><input autocomplete="off" required="required" id="field3" type="text" name="last_name" size="20" value="<s:property value="lastname"/>"/></td>
 					</tr>
 					<tr>
 						<td>Username:</td>
@@ -50,15 +50,15 @@
 					</tr>
 					<tr>
 						<td>Enter Old Password:</td>
-						<td><input autocomplete="off" id="field5" type="password" name="old_password" size="20" /></td>
+						<td><input autocomplete="off" required="required" id="field5" type="password" name="old_password" size="20" /></td>
 					</tr>
 					<tr>
 						<td>Enter New Password:</td>
-						<td><input autocomplete="off" id="field6" type="password" name="new_password" size="20" /></td>
+						<td><input autocomplete="off" required="required" id="field6" type="password" name="new_password" size="20" /></td>
 					</tr>
 					<tr>
 						<td>Confirm New Password:</td>
-						<td><input autocomplete="off" id="field7" type="password" name="con_password" size="20" /></td>
+						<td><input autocomplete="off" required="required" id="field7" type="password" name="con_password" size="20" /></td>
 					</tr>
 					<tr>
 						<td></td>

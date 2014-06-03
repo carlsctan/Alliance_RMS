@@ -22,24 +22,24 @@
 					<table id="add-table">
 						<tr>
 							<td>First Name:</td>
-							<td><input autocomplete="off" id="field1" type="text" name="first_name" size="20" /></td>
+							<td><input autocomplete="off" required="required" id="field1" type="text" name="first_name" size="20" /></td>
 						</tr>
 						
 						<tr>
 							<td>Middle Name:</td>
-							<td><input autocomplete="off" id="field2" type="text" name="middle_name" size="20" /></td>
+							<td><input autocomplete="off" required="required" id="field2" type="text" name="middle_name" size="20" /></td>
 						</tr>
 						<tr>
 							<td>Last Name:</td>
-							<td><input autocomplete="off" id="field3" type="text" name="last_name" size="20" /></td>
+							<td><input autocomplete="off" required="required" id="field3" type="text" name="last_name" size="20" /></td>
 						</tr>
 						<tr>
 							<td>Username:</td>
-							<td><input autocomplete="off" id="field4" type="text" name="username" size="20" /></td>
+							<td><input autocomplete="off" required="required" id="field4" type="text" name="username" size="20" /></td>
 						</tr>
 						<tr>
 							<td>Password:</td>
-							<td><input autocomplete="off" id="field5" type="password" name="password" size="20" /></td>
+							<td><input autocomplete="off" required="required" id="field5" type="password" name="password" size="20" /></td>
 						</tr>
 						<tr>
 						</tr>

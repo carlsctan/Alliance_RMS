@@ -8,6 +8,7 @@ package com.myapp.data;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -17,12 +18,16 @@ import java.util.List;
 public class EmployeeDAO {
     private static Database db = new Database();
     
+
     public static List<Employee> getEmployeeList() throws Exception{
+    Calendar now = Calendar.getInstance();
+    int year = now.get(Calendar.YEAR);
+    String stryear = String.valueOf(year);    
     List <Employee>e_list = new ArrayList<Employee>();                //List of Employees
     try {
         String sql = "SELECT employee.*, gen_effort.* "
                 + "FROM employee "
-                + "LEFT JOIN gen_effort ON employee.EmpIDNum = gen_effort.emp_id ";
+                + "LEFT JOIN gen_effort ON employee.EmpIDNum = gen_effort.emp_id AND gen_effort.year= "+stryear;
             
         ResultSet rs = db.doQuery(sql);
         while(rs.next()){
